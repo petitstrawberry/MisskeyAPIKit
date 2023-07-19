@@ -8,14 +8,14 @@
 import Alamofire
 import Foundation
 
-public class BaseClient<Body: Codable, Request: BaseRequest> {
+public class BaseClient {
     let client: MisskeyAPI.Client
 
     init(client: MisskeyAPI.Client) {
         self.client = client
     }
 
-    func request(_ request: Request) async throws -> Body {
+    func request<T: Codable>(_ request: BaseRequest) async throws -> T {
         let url = "\(client.baseURL)/api/\(request.endpoint)"
 
         let headers: HTTPHeaders = [
@@ -38,7 +38,7 @@ public class BaseClient<Body: Codable, Request: BaseRequest> {
                 throw APIError.invalidResponse
             }
 
-            return try JSONDecoder().decode(Body.self, from: body)
+            return try JSONDecoder().decode(T.self, from: body)
 
         case let .failure(error):
             switch response.response?.statusCode {

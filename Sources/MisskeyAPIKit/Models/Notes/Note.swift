@@ -24,6 +24,7 @@ public struct Note: Codable {
     public let renoteId: String?
     // public let renote: Note?
     // public let reply: Note?
+    public let poll: Poll?
 
     public enum Visibility: String, Codable {
         case `public`
@@ -32,5 +33,12 @@ public struct Note: Codable {
         case specified
         case `private`
         case direct
+    }
+
+    public struct Poll: Codable {
+        public let choices: [String]
+        public let multiple: Bool
+        public let expiresAt: Int?
+        public let expiredAfter: Int?
     }
 }
