@@ -1,5 +1,5 @@
 //
-//  Delete.swift
+//  Notes+Delete.swift
 //  MisskeyAPIKit
 //
 //  Created by petitstrawberry on 2023/07/20.

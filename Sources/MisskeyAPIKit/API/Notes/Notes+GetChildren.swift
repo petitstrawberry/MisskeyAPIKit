@@ -1,5 +1,5 @@
 //
-//  GetChildren.swift
+//  Notes+GetChildren.swift
 //  MisskeyAPIKit
 //
 //  Created by petitstrawberry on 2023/07/20.

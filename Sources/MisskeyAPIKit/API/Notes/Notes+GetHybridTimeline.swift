@@ -1,5 +1,5 @@
 //
-//  GetLocalTimeline.swift
+//  Notes+GetHybridTimeline.swift
 //  MisskeyAPIKit
 //
 //  Created by petitstrawberry on 2023/07/20.
