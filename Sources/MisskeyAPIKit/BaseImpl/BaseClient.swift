@@ -22,10 +22,13 @@ public class BaseClient {
             "Content-Type": "application/json",
         ]
 
+        var params = request.params
+        params?["i"] = client.credentials?.accessToken
+
         let response = await client.session.request(
             url,
             method: .post,
-            parameters: request.params?.compactMapValues { $0 },
+            parameters: params?.compactMapValues { $0 },
             encoding: JSONEncoding.default,
             headers: headers
         )
