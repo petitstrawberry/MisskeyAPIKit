@@ -1,3 +1,3 @@
 # MisskeyAPIKit
 
-MisskeyAPI client library for Swift
+Misskey API client for Swift
