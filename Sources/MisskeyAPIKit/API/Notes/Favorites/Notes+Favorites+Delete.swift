@@ -1,5 +1,5 @@
 //
-//  Notes+Favorites+Create.swift
+//  Notes+Favorites+Delete.swift
 //  MisskeyAPIKit
 //
 //  Created by petitstrawberry on 2023/07/20.
@@ -8,8 +8,8 @@
 import Alamofire
 
 public extension NotesRequest.Favorites {
-    struct CreateRequest: BaseRequest {
-        public let endpoint: String = "notes/favorites/create"
+    struct DeleteRequest: BaseRequest {
+        public let endpoint: String = "notes/favorites/delete"
         public let params: [String: Any?]?
 
         init(
@@ -25,10 +25,10 @@ public extension NotesRequest.Favorites {
 public extension NotesClient.Favorites {
     /// Create note
     /// - Parameters:
-    ///  - request: CreateRequest
+    ///  - request: DeleteRequest
     /// - Throws: APIError, Error
     ///
-    func create(_ request: NotesRequest.Favorites.CreateRequest) async throws {
+    func delete(_ request: NotesRequest.Favorites.DeleteRequest) async throws {
         try await super.request(request)
     }
 }
