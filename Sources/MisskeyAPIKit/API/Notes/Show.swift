@@ -28,4 +28,9 @@ public extension NotesClient {
     func show(_ request: NotesRequest.ShowRequest) async throws -> Note {
         return try await super.request(request)
     }
+
+    // alias of show
+    func get(_ request: NotesRequest.ShowRequest) async throws -> Note {
+        return try await show(request)
+    }
 }
