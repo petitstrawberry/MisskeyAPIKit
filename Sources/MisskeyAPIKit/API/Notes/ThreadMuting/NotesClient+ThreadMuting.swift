@@ -9,5 +9,5 @@ import Alamofire
 import Foundation
 
 public extension NotesClient {
-    class Reactions: BaseClient {}
+    class ThreadMuting: BaseClient {}
 }
