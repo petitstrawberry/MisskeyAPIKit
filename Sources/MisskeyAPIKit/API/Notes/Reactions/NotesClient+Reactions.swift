@@ -6,7 +6,10 @@
 //
 
 import Alamofire
+import Foundation
 
 public extension NotesClient {
-    class Reactions: BaseClient {}
+    class Reactions: BaseClient {
+        public let date = Date()
+    }
 }

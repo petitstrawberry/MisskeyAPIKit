@@ -7,4 +7,16 @@
 
 import Alamofire
 
-public class NotesClient: BaseClient {}
+public class NotesClient: BaseClient {
+    public let favorites: Favorites
+    public let polls: Polls
+    public let reactions: Reactions
+
+    override init(client: MisskeyAPI.Client) {
+        favorites = .init(client: client)
+        polls = .init(client: client)
+        reactions = .init(client: client)
+
+        super.init(client: client)
+    }
+}
