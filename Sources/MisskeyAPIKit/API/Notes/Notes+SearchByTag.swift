@@ -5,8 +5,6 @@
 //  Created by petitstrawberry on 2023/07/21.
 //
 
-import Alamofire
-
 public extension NotesRequest {
     struct SearchByTagRequest: BaseRequest {
         public let endpoint: String = "notes/search-by-tag"

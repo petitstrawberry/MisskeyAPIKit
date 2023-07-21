@@ -5,8 +5,6 @@
 //  Created by petitstrawberry on 2023/07/19.
 //
 
-import Alamofire
-
 public extension NotesRequest {
     struct CreateRequest: BaseRequest {
         public let endpoint: String = "notes/create"

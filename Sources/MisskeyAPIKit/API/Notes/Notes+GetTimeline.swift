@@ -5,8 +5,6 @@
 //  Created by petitstrawberry on 2023/07/20.
 //
 
-import Alamofire
-
 public extension NotesRequest {
     struct GetTimelineRequest: BaseRequest {
         public let endpoint: String = "notes/timeline"

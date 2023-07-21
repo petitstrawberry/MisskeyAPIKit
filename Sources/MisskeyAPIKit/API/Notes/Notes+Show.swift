@@ -5,9 +5,6 @@
 //  Created by petitstrawberry on 2023/07/20.
 //
 
-import Alamofire
-import Foundation
-
 public extension NotesRequest {
     struct ShowRequest: BaseRequest {
         public let endpoint: String = "notes/show"
