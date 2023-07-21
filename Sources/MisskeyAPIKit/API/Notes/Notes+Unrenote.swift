@@ -1,5 +1,5 @@
 //
-//  Notes+Delete.swift
+//  Notes+Unrenote.swift
 //  MisskeyAPIKit
 //
 //  Created by petitstrawberry on 2023/07/20.
@@ -8,8 +8,8 @@
 import Alamofire
 
 public extension NotesRequest {
-    struct DeleteRequest: BaseRequest {
-        public let endpoint: String = "notes/delete"
+    struct UnrenoteRequest: BaseRequest {
+        public let endpoint: String = "notes/unrenote"
         public let params: [String: Any?]?
 
         init(
@@ -23,13 +23,13 @@ public extension NotesRequest {
 }
 
 public extension NotesClient {
-    /// Delete note
+    /// Unrenote note
     /// - Parameters:
-    ///  - request: DeleteRequest
+    ///  - request: UnrenoteRequest
     /// - Returns: Created note
     /// - Throws: APIError, Error
     ///
-    func delete(_ request: NotesRequest.DeleteRequest) async throws {
+    func unrenote(_ request: NotesRequest.UnrenoteRequest) async throws {
         return try await super.request(request)
     }
 }
