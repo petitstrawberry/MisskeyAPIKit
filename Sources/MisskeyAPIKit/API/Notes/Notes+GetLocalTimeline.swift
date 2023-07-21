@@ -1,12 +1,9 @@
 //
-//  GetLocalTimeline.swift
+//  Notes+GetLocalTimeline.swift
 //  MisskeyAPIKit
 //
 //  Created by petitstrawberry on 2023/07/19.
 //
-
-import Alamofire
-import Foundation
 
 public extension NotesRequest {
     struct GetLocalTimelineRequest: BaseRequest {
@@ -51,7 +48,7 @@ public extension NotesRequest {
 }
 
 public extension NotesClient {
-    /// Get timeline
+    /// Get local timeline
     /// - Parameters:
     /// - request: GetLocalTimelineRequest
     /// - Returns: Timeline notes

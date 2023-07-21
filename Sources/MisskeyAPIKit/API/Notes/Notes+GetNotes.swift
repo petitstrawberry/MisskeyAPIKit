@@ -1,15 +1,12 @@
 //
-//  Get.swift
+//  Notes+GetNotes.swift
 //  MisskeyAPIKit
 //
 //  Created by petitstrawberry on 2023/07/20.
 //
 
-import Alamofire
-import Foundation
-
 public extension NotesRequest {
-    struct GetRequest: BaseRequest {
+    struct GetNotesRequest: BaseRequest {
         public let endpoint: String = "notes"
         public let params: [String: Any?]?
 
@@ -38,8 +35,8 @@ public extension NotesRequest {
 }
 
 public extension NotesClient {
-    /// Get global timeline
-    func get(_ request: NotesRequest.GetRequest) async throws -> [Note] {
+    /// Get notes
+    func getNotes(_ request: NotesRequest.GetNotesRequest) async throws -> [Note] {
         return try await super.request(request)
     }
 }

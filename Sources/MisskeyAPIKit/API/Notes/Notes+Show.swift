@@ -1,15 +1,13 @@
 //
-//  Delete.swift
+//  Notes+Show.swift
 //  MisskeyAPIKit
 //
 //  Created by petitstrawberry on 2023/07/20.
 //
 
-import Alamofire
-
 public extension NotesRequest {
-    struct DeleteRequest: BaseRequest {
-        public let endpoint: String = "notes/delete"
+    struct ShowRequest: BaseRequest {
+        public let endpoint: String = "notes/show"
         public let params: [String: Any?]?
 
         init(
@@ -23,13 +21,13 @@ public extension NotesRequest {
 }
 
 public extension NotesClient {
-    /// Delete note
-    /// - Parameters:
-    ///  - request: DeleteRequest
-    /// - Returns: Created note
-    /// - Throws: APIError, Error
-    ///
-    func create(_ request: NotesRequest.DeleteRequest) async throws -> Note {
+    /// Show (get) note
+    func show(_ request: NotesRequest.ShowRequest) async throws -> Note {
         return try await super.request(request)
+    }
+
+    // alias of show
+    func get(_ request: NotesRequest.ShowRequest) async throws -> Note {
+        return try await show(request)
     }
 }
