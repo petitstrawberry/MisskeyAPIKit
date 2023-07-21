@@ -5,8 +5,6 @@
 //  Created by petitstrawberry on 2023/07/21.
 //
 
-import Alamofire
-
 public extension NotesRequest.Reactions {
     struct DeleteRequest: BaseRequest {
         public let endpoint: String = "notes/reactions/delete"

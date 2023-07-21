@@ -5,9 +5,6 @@
 //  Created by petitstrawberry on 2023/07/21.
 //
 
-import Alamofire
-import Foundation
-
 public extension NotesRequest.Reactions {
     struct GetRequest: BaseRequest {
         public let endpoint: String = "notes/reactions"

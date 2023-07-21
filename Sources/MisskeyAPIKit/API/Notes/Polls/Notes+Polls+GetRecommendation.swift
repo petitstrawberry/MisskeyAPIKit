@@ -5,8 +5,6 @@
 //  Created by petitstrawberry on 2023/07/20.
 //
 
-import Alamofire
-
 public extension NotesRequest.Favorites {
     struct GetRecommendationRequest: BaseRequest {
         public let endpoint: String = "notes/polls/recommendation"
