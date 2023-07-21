@@ -14,16 +14,16 @@ public extension NotesRequest {
         public let params: [String: Any?]?
 
         /// - Parameters:
+        ///  - listId: List ID
+        ///  - limit: The maximum number of notes to get (default: 10)
+        ///  - sinceId: Since ID
+        ///  - untilId: Until ID
+        ///  - sinceDate: Since date
+        ///  - untilDate: Until date
+        ///  - includeMyRenotes: Include my renotes
+        ///  - includeRenotedMyNotes: Include renoted my notes
+        ///  - includeLocalRenotes: Include local renotes
         ///  - withFiles: Include files
-        /// - withReplies: Include replies
-        /// - fileType: File type
-        /// - excludeNsfw: Exclude NSFW
-        /// - limit: Limit
-        /// - sinceId: Since ID
-        /// - untilId: Until ID
-        /// - sinceDate: Since date
-        /// - untilDate: Until date
-        ///
         init(
             listId: String,
             limit: Int? = nil,
