@@ -13,15 +13,14 @@ public extension NotesRequest {
         public let params: [String: Any?]?
 
         /// - Parameters:
-        ///  - reply: Include reply notes
-        ///  - renote: Include renote notes
-        ///  - withFiles: Include files
-        ///  - poll: Include poll
+        ///  - query: Search query
         ///  - sinceId: Since ID
         ///  - untilId: Until ID
         ///  - limit: Limit
-        ///  - tag: Tag
-        ///  - query: Query
+        ///  - offset: Offset
+        ///  - host: Host
+        ///  - userId: User ID
+        ///  - channelId: Channel ID
         ///
         init(
             query: String,
@@ -51,7 +50,7 @@ public extension NotesClient {
     /// Search notes
     /// - Parameters:
     /// - request: SearchRequest
-    /// - Returns: Timeline notes
+    /// - Returns: Matched notes
     /// - Throws: APIError, Error
     ///
     func search(_ request: NotesRequest.SearchRequest) async throws -> [Note] {
