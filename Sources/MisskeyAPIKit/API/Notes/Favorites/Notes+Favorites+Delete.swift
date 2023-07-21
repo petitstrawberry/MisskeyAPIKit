@@ -23,7 +23,7 @@ public extension NotesRequest.Favorites {
 }
 
 public extension NotesClient.Favorites {
-    /// Create note
+    /// Delete note
     /// - Parameters:
     ///  - request: DeleteRequest
     /// - Throws: APIError, Error
