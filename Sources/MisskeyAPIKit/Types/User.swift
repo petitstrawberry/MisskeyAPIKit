@@ -20,6 +20,11 @@ public struct User: Codable {
         case unknown
     }
 
+    public struct Field: Codable {
+        public let name: String
+        public let value: String
+    }
+
     // swift
     public let id: String
     public let username: String
@@ -48,7 +53,7 @@ public struct User: Codable {
     public let location: String?
     public let birthday: String?
     public let lang: String?
-    public let fields: [String]?
+    public let fields: [Field]?
     public let followersCount: Int?
     public let followingCount: Int?
     public let notesCount: Int?
@@ -61,7 +66,7 @@ public struct User: Codable {
     public let twoFactorEnabled: Bool?
     public let usePasswordLessLogin: Bool?
     public let securityKeys: Bool?
-    public let roles: [String]?
+    public let roles: [Role]?
     public let memo: String?
     public let moderationNote: String?
     public let isFollowing: Bool?
