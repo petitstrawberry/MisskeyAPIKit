@@ -34,7 +34,7 @@ public struct User: Codable {
     public let avatarBlurhash: String?
     public let isBot: Bool?
     public let isCat: Bool?
-    public let emojis: Emoji?
+    public let emojis: [String: String]?
     public let onlineStatus: OnlineStatus?
     public let badgeRoles: [String]?
     public let url: String?
