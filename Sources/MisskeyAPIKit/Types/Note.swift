@@ -5,7 +5,7 @@
 //  Created by petitstrawberry on 2023/07/11.
 //
 
-public struct Note: Codable {
+public class Note: Codable {
     public let id: String
     public let createdAt: String
     public let text: String?
@@ -22,8 +22,8 @@ public struct Note: Codable {
     public let files: [DriveFile]
     public let replyId: String?
     public let renoteId: String?
-    // public let renote: Note?
-    // public let reply: Note?
+    public let renote: Note?
+    public let reply: Note?
     public let poll: Poll?
 
     public enum Visibility: String, Codable {
@@ -36,9 +36,15 @@ public struct Note: Codable {
     }
 
     public struct Poll: Codable {
-        public let choices: [String]
+        public struct Choice: Codable {
+            public let text: String
+            public let votes: Int
+            public let isVoted: Bool
+        }
+
+        public let choices: [Choice]
         public let multiple: Bool
-        public let expiresAt: Int?
-        public let expiredAfter: Int?
+        public let expiresAt: String?
+        public let expiredAfter: String?
     }
 }

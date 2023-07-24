@@ -5,7 +5,7 @@
 //  Created by petitstrawberry on 2023/07/15.
 //
 
-public struct DriveFile: Codable {
+public class DriveFile: Codable {
     public struct Properties: Codable {
         let width: Int?
         let height: Int?
@@ -26,7 +26,7 @@ public struct DriveFile: Codable {
     public let thumbnailUrl: String?
     public let comment: String?
     public let folderId: String?
-    // public let folder: DriveFolder?
+    public let folder: DriveFolder?
     public let userId: String?
     public let user: User?
 }
