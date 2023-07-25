@@ -34,7 +34,10 @@ let package = Package(
         ),
         .testTarget(
             name: "MisskeyAPIKitTests",
-            dependencies: ["MisskeyAPIKit"]
+            dependencies: ["MisskeyAPIKit"],
+            resources: [
+                .copy("Resources"),
+            ]
         ),
     ]
 )

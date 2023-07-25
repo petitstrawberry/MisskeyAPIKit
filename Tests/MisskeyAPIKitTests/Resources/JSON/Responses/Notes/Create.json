@@ -1,0 +1,33 @@
+{
+    "createdNote": {
+        "id": "9hlclod0p4",
+        "createdAt": "2023-07-25T04:15:33.012Z",
+        "userId": "9gxocpq7bw",
+        "user": {
+            "id": "9gxocpq7bw",
+            "name": "いちご",
+            "username": "ichigo",
+            "host": null,
+            "avatarUrl": "https://mi.ichigo.dev/proxy/avatar.webp?url=https%3A%2F%2Ffiles.mi.ichigo.dev%2Ffiles%2Fwebpublic-efc571c3-07f6-49c7-b643-2dd7516110be.png&avatar=1",
+            "avatarBlurhash": "e6N0q|-m?b~V%M^*%MNGxtfP%2M|az%2IU^*ofM{ofIUoe%2IVofof",
+            "isBot": false,
+            "isCat": false,
+            "emojis": {},
+            "onlineStatus": "online",
+            "badgeRoles": []
+        },
+        "text": "Hello, world!",
+        "cw": null,
+        "visibility": "public",
+        "localOnly": false,
+        "reactionAcceptance": null,
+        "renoteCount": 0,
+        "repliesCount": 0,
+        "reactions": {},
+        "reactionEmojis": {},
+        "fileIds": [],
+        "files": [],
+        "replyId": null,
+        "renoteId": null
+    }
+}
