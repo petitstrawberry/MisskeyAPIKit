@@ -7,7 +7,7 @@
 
 import Alamofire
 
-enum APIError: Error {
+public enum APIError: Error {
     case badRequest(ErrorResponse.Error)
     case unauthorized(ErrorResponse.Error)
     case invalidResponse
@@ -16,16 +16,16 @@ enum APIError: Error {
     case unknown
 }
 
-struct ErrorResponse: Codable {
-    struct Error: Codable {
-        let message: String
-        let code: String
-        let id: String
-        let kind: String
-        let info: Info?
+public struct ErrorResponse: Codable {
+    public struct Error: Codable {
+        public let message: String
+        public let code: String
+        public let id: String
+        public let kind: String
+        public let info: Info?
     }
 
-    struct Info: Codable {
+    public struct Info: Codable {
         let param: String?
         let reason: String?
     }
