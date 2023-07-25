@@ -29,12 +29,12 @@ let package = Package(
             name: "MisskeyAPIKit",
             dependencies: [
                 .product(name: "Alamofire", package: "Alamofire"),
-                .product(name: "Mocker", package: "Mocker"),
             ]
         ),
         .testTarget(
             name: "MisskeyAPIKitTests",
-            dependencies: ["MisskeyAPIKit"],
+            dependencies: ["MisskeyAPIKit",
+                           .product(name: "Mocker", package: "Mocker")],
             resources: [
                 .copy("Resources"),
             ]
