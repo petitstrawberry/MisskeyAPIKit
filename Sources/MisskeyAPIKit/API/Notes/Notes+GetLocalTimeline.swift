@@ -21,7 +21,7 @@ public extension NotesRequest {
         /// - sinceDate: Since date
         /// - untilDate: Until date
         ///
-        init(
+        public init(
             withFiles: Bool? = nil,
             withReplies: Bool? = nil,
             fileType: [String]? = nil,

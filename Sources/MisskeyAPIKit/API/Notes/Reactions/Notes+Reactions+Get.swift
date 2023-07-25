@@ -10,7 +10,7 @@ public extension NotesRequest.Reactions {
         public let endpoint: String = "notes/reactions"
         public let params: [String: Any?]?
 
-        init(
+        public init(
             noteId: String,
             limit: Int? = nil,
             sinceId: String? = nil,

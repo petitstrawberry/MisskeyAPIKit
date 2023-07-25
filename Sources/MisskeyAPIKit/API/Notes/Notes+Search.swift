@@ -20,7 +20,7 @@ public extension NotesRequest {
         ///  - userId: User ID
         ///  - channelId: Channel ID
         ///
-        init(
+        public init(
             query: String,
             sinceId: String? = nil,
             untilId: String? = nil,

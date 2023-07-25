@@ -10,15 +10,15 @@ public extension NotesRequest {
         public let endpoint: String = "notes/global-timeline"
         public let params: [String: Any?]?
 
-        init(withFiles: Bool? = nil,
-             withReplies: Bool? = nil,
-             fileType: [String]? = nil,
-             excludeNsfw: Bool? = nil,
-             limit: Int? = nil,
-             sinceId: String? = nil,
-             untilId: String? = nil,
-             sinceDate: Int? = nil,
-             untilDate: Int? = nil)
+        public init(withFiles: Bool? = nil,
+                    withReplies: Bool? = nil,
+                    fileType: [String]? = nil,
+                    excludeNsfw: Bool? = nil,
+                    limit: Int? = nil,
+                    sinceId: String? = nil,
+                    untilId: String? = nil,
+                    sinceDate: Int? = nil,
+                    untilDate: Int? = nil)
         {
             params = [
                 "withFiles": withFiles,

@@ -10,7 +10,7 @@ public extension NotesRequest {
         public let endpoint: String = "notes/delete"
         public let params: [String: Any?]?
 
-        init(
+        public init(
             noteId: String
         ) {
             params = [

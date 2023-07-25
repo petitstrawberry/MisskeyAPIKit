@@ -10,7 +10,7 @@ public extension NotesRequest.Favorites {
         public let endpoint: String = "notes/favorites/create"
         public let params: [String: Any?]?
 
-        init(
+        public init(
             noteId: String
         ) {
             params = [

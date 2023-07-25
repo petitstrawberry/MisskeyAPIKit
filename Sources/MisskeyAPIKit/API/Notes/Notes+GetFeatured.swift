@@ -10,7 +10,7 @@ public extension NotesRequest {
         public let endpoint: String = "notes/featured"
         public let params: [String: Any?]?
 
-        init(
+        public init(
             limit: Int? = nil,
             offset: Int? = nil
         ) {

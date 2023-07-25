@@ -21,7 +21,7 @@ public extension NotesRequest {
         ///  - includeRenotedMyNotes: Include renoted my notes
         ///  - includeLocalRenotes: Include local renotes
         ///  - withFiles: Include files
-        init(
+        public init(
             listId: String,
             limit: Int? = nil,
             sinceId: String? = nil,

@@ -10,7 +10,7 @@ public extension NotesRequest {
         public let endpoint: String = "notes"
         public let params: [String: Any?]?
 
-        init(
+        public init(
             local: Bool? = nil,
             reply: Bool? = nil,
             renote: Bool? = nil,

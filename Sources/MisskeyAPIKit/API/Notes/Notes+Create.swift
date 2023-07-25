@@ -10,7 +10,7 @@ public extension NotesRequest {
         public let endpoint: String = "notes/create"
         public let params: [String: Any?]?
 
-        init(
+        public init(
             visibility: Note.Visibility? = nil,
             visibleUserIds: [String]? = nil,
             cw: String? = nil,

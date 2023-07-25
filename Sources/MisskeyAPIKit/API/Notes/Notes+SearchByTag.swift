@@ -21,7 +21,7 @@ public extension NotesRequest {
         ///  - tag: Tag
         ///  - query: Query
         ///
-        init(
+        public init(
             reply: Bool? = nil,
             renote: Bool? = nil,
             withFiles: Bool? = nil,

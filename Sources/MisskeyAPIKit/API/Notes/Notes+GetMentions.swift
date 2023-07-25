@@ -22,7 +22,7 @@ public extension NotesRequest {
         ///  - withFiles: Include files
         ///  - withReplies: Include replies
         ///
-        init(
+        public init(
             following: Bool? = nil,
             limit: Int? = nil,
             sinceId: String? = nil,

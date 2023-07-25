@@ -10,7 +10,7 @@ public extension NotesRequest {
         public let endpoint: String = "notes/hybrid-timeline"
         public let params: [String: Any?]?
 
-        init(
+        public init(
             limit: Int? = nil,
             sinceId: String? = nil,
             untilId: String? = nil,

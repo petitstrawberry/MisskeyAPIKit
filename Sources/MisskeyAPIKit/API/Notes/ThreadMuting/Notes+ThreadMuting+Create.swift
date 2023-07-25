@@ -10,7 +10,7 @@ public extension NotesRequest.ThreadMuting {
         public let endpoint: String = "notes/thread-muting/create"
         public let params: [String: Any?]?
 
-        init(
+        public init(
             noteId: String
         ) {
             params = [
