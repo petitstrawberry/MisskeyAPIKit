@@ -8,8 +8,6 @@
 import Alamofire
 
 public class MisskeyAPI {
-    public static let version = "0.0.1"
-
     struct Client {
         let baseURL: String
         let credentials: Credentials?
