@@ -1,0 +1,22 @@
+name: Create Release Note
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    permissions:
+      pull-requests: write
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'release')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
