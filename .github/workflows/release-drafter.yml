@@ -9,8 +9,8 @@ on:
   pull_request_target:
     types: [opened, reopened, synchronize]
 
-permissions:
-  contents: read
+# permissions:
+#  contents: read
 
 jobs:
   release:
