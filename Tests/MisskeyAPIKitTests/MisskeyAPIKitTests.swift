@@ -1,8 +1,8 @@
-import XCTest
 @testable import MisskeyAPIKit
+import XCTest
 
 final class MisskeyAPIKitTests: XCTestCase {
-    func testExample() throws {
+    func testExample() async throws {
         // XCTest Documenation
         // https://developer.apple.com/documentation/xctest
 

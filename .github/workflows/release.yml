@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    permissions:
+      # write permission is required to create a github release
+      contents: write
+      # write permission is required for autolabeler
+      # otherwise, read permission is required at least
+      pull-requests: write
+    if: github.event.pull_request.merged == true && (startsWith(github.head_ref, 'release') || startsWith(github.head_ref, 'hotfix'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release Note
+        uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v3
+        with:
+          ref: main
+      - name: Create Pull Request
+        id: create-pull-request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PULL_REQUEST_URI=$(gh pr create -B develop -t 'Merge main into develop' -l 'auto-merge' -b "")
+          echo "::set-output name=PULL_REQUEST_URI::$PULL_REQUEST_URI"
+      - name: Merge Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge ${{steps.create-pull-request.outputs.PULL_REQUEST_URI}} --merge
+      
+      
+
+
