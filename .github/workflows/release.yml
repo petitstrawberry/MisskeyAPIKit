@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    permissions:
+      # write permission is required to create a github release
+      contents: write
+      # write permission is required for autolabeler
+      # otherwise, read permission is required at least
+      pull-requests: write
+    if: github.event.pull_request.merged == true && (startsWith(github.head_ref, 'release') || startsWith(github.head_ref, 'hotfix'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v3
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - name: Extract tag name
+        shell: bash
+        run: |
+          branch=${{ steps.extract_branch.outputs.branch }}
+          echo "##[set-output name=tag;]$(echo ${branch#release/})"
+        id: extract_tag
+      - uses: yanamura/git-flow-merge-action@v1
+        with:
+          ### GITHUB_TOKEN.(required)
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+          ### branch name which merged to develop and master branch.(required)
+          ### ex. release/1.1.0, hotfix_branch
+          branch: ${{ steps.extract_branch.outputs.branch }}
+
+          ### develop branch name. default: develop (optional).
+          develop_branch: 'develop'
+
+          ### main branch name. default: master (optional).
+          main_branch: 'main'
+
+          ### tag name which tagged to master.(optional)
+          ### ex. v1.1.0
+          # tag: v${{ steps.extract_tag.outputs.tag }}
+
+
