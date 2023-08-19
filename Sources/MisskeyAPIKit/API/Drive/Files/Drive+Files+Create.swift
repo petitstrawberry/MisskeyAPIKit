@@ -39,7 +39,9 @@ public extension DriveRequest.Files {
 
 public extension DriveClient.Files {
     /// Create file
-    func create(_ request: DriveRequest.Files.CreateRequest) async throws -> DriveFile {
+    func create(_ request: DriveRequest.Files.CreateRequest,
+                progressHandler: @escaping (Progress) -> Void) async throws -> DriveFile
+    {
         let url = "\(client.baseURL)/api/\(request.endpoint)"
 
         var params = request.params
@@ -63,6 +65,9 @@ public extension DriveClient.Files {
             headers: request.headers
         )
         .validate(statusCode: 200 ..< 300)
+        .uploadProgress { progress in
+            progressHandler(progress)
+        }
         .serializingData().response
 
         switch response.result {
