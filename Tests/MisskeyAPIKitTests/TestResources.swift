@@ -3,13 +3,16 @@ import Foundation
 import XCTest
 
 public enum TestResources {
+    public static let errorInvalidParam: URL = Bundle.module.url(
+        forResource: "JSON/Responses/APIError/InvalidParam", withExtension: "json"
+    )!
     public static let notesTimelineJSON: URL = Bundle.module.url(
         forResource: "JSON/Responses/Notes/Timeline", withExtension: "json"
     )!
     public static let notesCreateJSON: URL = Bundle.module.url(
         forResource: "JSON/Responses/Notes/Create", withExtension: "json"
     )!
-    public static let errorInvalidParam: URL = Bundle.module.url(
-        forResource: "JSON/Responses/APIError/InvalidParam", withExtension: "json"
+    public static let driveFileCreateJSON: URL = Bundle.module.url(
+        forResource: "JSON/Responses/Drive/Files/Create", withExtension: "json"
     )!
 }
