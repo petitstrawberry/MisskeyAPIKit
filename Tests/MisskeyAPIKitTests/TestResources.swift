@@ -12,6 +12,9 @@ public enum TestResources {
     public static let notesCreateJSON: URL = Bundle.module.url(
         forResource: "JSON/Responses/Notes/Create", withExtension: "json"
     )!
+    public static let driveFilesJSON: URL = Bundle.module.url(
+        forResource: "JSON/Responses/Drive/Files", withExtension: "json"
+    )!
     public static let driveFileCreateJSON: URL = Bundle.module.url(
         forResource: "JSON/Responses/Drive/Files/Create", withExtension: "json"
     )!
