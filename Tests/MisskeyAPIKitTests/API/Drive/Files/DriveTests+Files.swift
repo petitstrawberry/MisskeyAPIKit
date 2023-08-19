@@ -63,4 +63,30 @@ extension DriveTests {
         XCTAssertNotNil(file)
         XCTAssertEqual(file.id, "9hltx1z3gq")
     }
+
+    func testExists() async throws {
+        let configuration = URLSessionConfiguration.af.default
+        configuration.protocolClasses = [MockingURLProtocol.self]
+        let sessionManager = Alamofire.Session(configuration: configuration)
+
+        let client = MisskeyAPI(
+            baseURL: baseURL,
+            credentials: .init(accessToken: "access_token"),
+            session: sessionManager
+        )
+
+        let mock = try Mock(url: URL(string: baseURL + "/api/drive/files/check-existence")!,
+                            dataType: .json,
+                            statusCode: 200,
+                            data: [
+                                .post: Data(contentsOf: TestResources.driveFilesExistsJSON),
+                            ])
+        mock.register()
+
+        let exists = try await client.drive.files.exists(
+            .init(md5: "cc0007de11564fe8d979a0adf8d1b1b5")
+        )
+
+        XCTAssertTrue(exists)
+    }
 }
