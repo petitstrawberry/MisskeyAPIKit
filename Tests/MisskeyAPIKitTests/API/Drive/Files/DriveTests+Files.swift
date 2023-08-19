@@ -37,6 +37,34 @@ extension DriveTests {
         }
     }
 
+    func testUpdate() async throws {
+        let configuration = URLSessionConfiguration.af.default
+        configuration.protocolClasses = [MockingURLProtocol.self]
+        let sessionManager = Alamofire.Session(configuration: configuration)
+
+        let client = MisskeyAPI(
+            baseURL: baseURL,
+            credentials: .init(accessToken: "access_token"),
+            session: sessionManager
+        )
+
+        let mock = try Mock(url: URL(string: baseURL + "/api/drive/files/update")!,
+                            dataType: .json,
+                            statusCode: 200,
+                            data: [
+                                .post: Data(contentsOf: TestResources.driveFilesUpdateJSON),
+                            ])
+        mock.register()
+
+        let file = try await client.drive.files.update(
+            .init(fileId: "9il5we0pk9", name: "foo.txt")
+        )
+
+        XCTAssertNotNil(file)
+        XCTAssertEqual(file.id, "9il5we0pk9")
+        XCTAssertEqual(file.name, "foo.txt")
+    }
+
     func testShow() async throws {
         let configuration = URLSessionConfiguration.af.default
         configuration.protocolClasses = [MockingURLProtocol.self]
