@@ -36,4 +36,31 @@ extension DriveTests {
             XCTAssertNotNil(createdFile)
         }
     }
+
+    func testShow() async throws {
+        let configuration = URLSessionConfiguration.af.default
+        configuration.protocolClasses = [MockingURLProtocol.self]
+        let sessionManager = Alamofire.Session(configuration: configuration)
+
+        let client = MisskeyAPI(
+            baseURL: baseURL,
+            credentials: .init(accessToken: "access_token"),
+            session: sessionManager
+        )
+
+        let mock = try Mock(url: URL(string: baseURL + "/api/drive/files/show")!,
+                            dataType: .json,
+                            statusCode: 200,
+                            data: [
+                                .post: Data(contentsOf: TestResources.driveFilesShowJSON),
+                            ])
+        mock.register()
+
+        let file = try await client.drive.files.show(
+            .init(fileId: "9hltx1z3gq")
+        )
+
+        XCTAssertNotNil(file)
+        XCTAssertEqual(file.id, "9hltx1z3gq")
+    }
 }
