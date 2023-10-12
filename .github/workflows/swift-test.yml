@@ -5,8 +5,8 @@ name: Swift-Test
 
 
 on:
-  push:
-    branches: [ "develop" ]
+  #push:
+  #  branches: [ "develop" ]
   pull_request:
     branches: [ "develop", "main" ]
     types: [opened, synchronize]
