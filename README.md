@@ -30,5 +30,5 @@ let createdNote = try await misskey.notes.create(.init(text: "Hello, world!"))
 ### Get timeline
 
 ```swift
-let notes: [Note] = try await client.notes.getTimeline(.init(limit: 10))
+let notes: [Note] = try await misskey.notes.getTimeline(.init(limit: 10))
 ```
