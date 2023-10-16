@@ -118,7 +118,7 @@ extension DriveTests {
         XCTAssertTrue(exists)
     }
 
-    func testFind() async throws {
+    func testFind1() async throws {
         let configuration = URLSessionConfiguration.af.default
         configuration.protocolClasses = [MockingURLProtocol.self]
         let sessionManager = Alamofire.Session(configuration: configuration)
@@ -138,9 +138,35 @@ extension DriveTests {
         mock.register()
 
         let found = try await client.drive.files.find(
-            .init(name: "PNG image.png")
+            .init(name: "i-want-you.png")
         )
 
-        XCTAssert(found[0].name == "PNG image.png")
+        XCTAssert(found.allSatisfy({ $0.name == "i-want-you.png" }))
+    }
+
+    func testFind2() async throws {
+        let configuration = URLSessionConfiguration.af.default
+        configuration.protocolClasses = [MockingURLProtocol.self]
+        let sessionManager = Alamofire.Session(configuration: configuration)
+
+        let client = MisskeyAPI(
+            baseURL: baseURL,
+            credentials: .init(accessToken: "access_token"),
+            session: sessionManager
+        )
+
+        let mock = try Mock(url: URL(string: baseURL + "/api/drive/files/find-by-hash")!,
+                            dataType: .json,
+                            statusCode: 200,
+                            data: [
+                                .post: Data(contentsOf: TestResources.driveFilesFindJSON),
+                            ])
+        mock.register()
+
+        let found = try await client.drive.files.find(
+            .init(md5: "71f104a7ad7098f95842b1bc857ba960")
+        )
+
+        XCTAssert(found.allSatisfy({ $0.md5 == "71f104a7ad7098f95842b1bc857ba960" }))
     }
 }
