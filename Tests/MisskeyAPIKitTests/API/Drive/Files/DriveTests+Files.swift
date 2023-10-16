@@ -169,4 +169,35 @@ extension DriveTests {
 
         XCTAssert(found.allSatisfy({ $0.md5 == "71f104a7ad7098f95842b1bc857ba960" }))
     }
+
+    func testGetAttachedNotes() async throws {
+        let configuration = URLSessionConfiguration.af.default
+        configuration.protocolClasses = [MockingURLProtocol.self]
+        let sessionManager = Alamofire.Session(configuration: configuration)
+
+        let client = MisskeyAPI(
+            baseURL: baseURL,
+            credentials: .init(accessToken: "access_token"),
+            session: sessionManager
+        )
+
+        let mock = try Mock(url: URL(string: baseURL + "/api/drive/files/attached-notes")!,
+                            dataType: .json,
+                            statusCode: 200,
+                            data: [
+                                .post: Data(contentsOf: TestResources.driveFilesGetAttachedNotesJSON),
+                            ])
+        mock.register()
+
+        let notes = try await client.drive.files.getAttachedNotes(
+            .init(fileId: "9kw7pwafi2")
+        )
+
+        XCTAssert(notes.allSatisfy({
+            $0.files.contains(where:{
+                $0.id == "9kw7pwafi2"
+            })
+        }))
+    }
+
 }
