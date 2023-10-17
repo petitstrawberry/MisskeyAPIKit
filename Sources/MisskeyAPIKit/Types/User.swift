@@ -36,7 +36,7 @@ public struct User: Codable {
     public let isCat: Bool?
     public let emojis: [String: String]?
     public let onlineStatus: OnlineStatus?
-    public let badgeRoles: [String]?
+    public let badgeRoles: [BadgeRole]?
     public let url: String?
     public let uri: String?
     public let movedTo: String?

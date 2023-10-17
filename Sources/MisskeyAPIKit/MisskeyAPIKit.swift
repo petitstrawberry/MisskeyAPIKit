@@ -17,11 +17,13 @@ public class MisskeyAPI {
     }
 
     public let notes: NotesClient
+    public let drive: DriveClient
 
     // MARK: - Initializer
 
     public init(baseURL: String, credentials: Credentials? = nil, session: Session = .default) {
         let client = Client(baseURL: baseURL, credentials: credentials, session: session)
         notes = NotesClient(client: client)
+        drive = DriveClient(client: client)
     }
 }
