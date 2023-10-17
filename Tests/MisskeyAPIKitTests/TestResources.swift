@@ -33,4 +33,10 @@ public enum TestResources {
     public static let driveFilesGetAttachedNotesJSON: URL = Bundle.module.url(
         forResource: "JSON/Responses/Drive/Files/GetAttachedNotes", withExtension: "json"
     )!
+    public static let driveFolders1JSON: URL = Bundle.module.url(
+        forResource: "JSON/Responses/Drive/Folders1", withExtension: "json"
+    )!
+    public static let driveFolders2JSON: URL = Bundle.module.url(
+        forResource: "JSON/Responses/Drive/Folders2", withExtension: "json"
+    )!
 }
