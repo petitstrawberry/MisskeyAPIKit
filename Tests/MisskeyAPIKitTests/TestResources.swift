@@ -48,4 +48,7 @@ public enum TestResources {
     public static let driveFoldersUpdateJSON: URL = Bundle.module.url(
         forResource: "JSON/Responses/Drive/Folders/Update", withExtension: "json"
     )!
+    public static let driveStreamJSON: URL = Bundle.module.url(
+        forResource: "JSON/Responses/Drive/Stream", withExtension: "json"
+    )!
 }

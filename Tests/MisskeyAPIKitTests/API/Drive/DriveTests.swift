@@ -76,4 +76,27 @@ final class DriveTests: XCTestCase {
         XCTAssertNotNil(folders)
         XCTAssert(folders.allSatisfy({ $0.parentId == "9kx8eu003t" }))
     }
+
+    func testStream() async throws {
+        let configuration = URLSessionConfiguration.af.default
+        configuration.protocolClasses = [MockingURLProtocol.self]
+        let sessionManager = Alamofire.Session(configuration: configuration)
+
+        let client = MisskeyAPI(
+            baseURL: baseURL,
+            credentials: .init(accessToken: "access_token"),
+            session: sessionManager
+        )
+
+        let mock = try Mock(url: URL(string: baseURL + "/api/drive/stream")!,
+                            dataType: .json,
+                            statusCode: 200,
+                            data: [
+                                .post: Data(contentsOf: TestResources.driveStreamJSON),
+                            ])
+        mock.register()
+
+        let stream = try await client.drive.stream(.init())
+        XCTAssertNotNil(stream)
+    }
 }
