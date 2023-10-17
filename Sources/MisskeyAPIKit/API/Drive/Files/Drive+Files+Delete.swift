@@ -10,7 +10,7 @@ import Foundation
 
 public extension DriveRequest.Files {
     struct DeleteRequest: BaseRequest {
-        public let endpoint: String = "notes/delete"
+        public let endpoint: String = "drive/files/delete"
         public let params: [String: Any?]?
 
         public init(
