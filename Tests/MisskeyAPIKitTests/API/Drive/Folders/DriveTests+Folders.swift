@@ -90,5 +90,34 @@ extension DriveTests {
             XCTAssertNotNil(folder)
             XCTAssertEqual(folder.id, "9kx8eu003t")
         }
+
+        // update
+        func testUpdate() async throws {
+            let configuration = URLSessionConfiguration.af.default
+            configuration.protocolClasses = [MockingURLProtocol.self]
+            let sessionManager = Alamofire.Session(configuration: configuration)
+
+            let client = MisskeyAPI(
+                baseURL: baseURL,
+                credentials: .init(accessToken: "access_token"),
+                session: sessionManager
+            )
+
+            let mock = try Mock(url: URL(string: baseURL + "/api/drive/folders/update")!,
+                                dataType: .json,
+                                statusCode: 200,
+                                data: [
+                                    .post: Data(contentsOf: TestResources.driveFoldersUpdateJSON),
+                                ])
+            mock.register()
+
+            let folder = try await client.drive.folders.update(
+                .init(folderId: "9kx8eu003t", name: "ai-chan")
+            )
+
+            XCTAssertNotNil(folder)
+            XCTAssertEqual(folder.id, "9kx8eu003t")
+            XCTAssertEqual(folder.name, "ai-chan-kawaii")
+        }
     }
 }
