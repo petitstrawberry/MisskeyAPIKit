@@ -1,0 +1,18 @@
+{
+    "id": "9il5we0pk9",
+    "createdAt": "2023-08-19T05:47:37.849Z",
+    "name": "test.txt.unknown",
+    "type": "application/octet-stream",
+    "md5": "ca05d40ed8a702e9583a64f2b5040662",
+    "size": 15407,
+    "isSensitive": false,
+    "blurhash": null,
+    "properties": {},
+    "url": "https://files.mi.example.com/files/bbf16584-7155-4d8c-bfde-625c85a66f96",
+    "thumbnailUrl": null,
+    "comment": "text file",
+    "folderId": null,
+    "folder": null,
+    "userId": null,
+    "user": null
+}

@@ -18,19 +18,15 @@ public class BaseClient {
     func request<T: Codable>(_ request: BaseRequest) async throws -> T {
         let url = "\(client.baseURL)/api/\(request.endpoint)"
 
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json",
-        ]
-
         var params = request.params
         params?["i"] = client.credentials?.accessToken
 
         let response = await client.session.request(
             url,
-            method: .post,
+            method: request.method,
             parameters: params?.compactMapValues { $0 },
-            encoding: JSONEncoding.default,
-            headers: headers
+            encoding: request.encoding,
+            headers: request.headers
         )
         .validate(statusCode: 200 ..< 300)
         .serializingData().response
@@ -68,19 +64,15 @@ public class BaseClient {
     func request(_ request: BaseRequest) async throws {
         let url = "\(client.baseURL)/api/\(request.endpoint)"
 
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/json",
-        ]
-
         var params = request.params
         params?["i"] = client.credentials?.accessToken
 
         let response = await client.session.request(
             url,
-            method: .post,
+            method: request.method,
             parameters: params?.compactMapValues { $0 },
-            encoding: JSONEncoding.default,
-            headers: headers
+            encoding: request.encoding,
+            headers: request.headers
         )
         .validate(statusCode: 200 ..< 300)
         .serializingData().response
