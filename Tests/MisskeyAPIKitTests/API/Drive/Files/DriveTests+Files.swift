@@ -4,7 +4,7 @@ import Mocker
 import XCTest
 
 extension DriveTests {
-    final class DriveTests: XCTestCase {
+    final class FilesTests: XCTestCase {
         let baseURL = "https://mi.example.com"
 
         func testCreate() async throws {
