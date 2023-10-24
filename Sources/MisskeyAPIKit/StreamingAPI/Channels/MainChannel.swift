@@ -1,3 +1,10 @@
+//
+//  MainChannel.swift
+//  MisskeyAPIKit
+//
+//  Created by petitstrawberry on 2023/10/24.
+//
+
 import Foundation
 import Starscream
 

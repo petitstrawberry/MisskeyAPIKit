@@ -1,3 +1,10 @@
+//
+//  StreamingRequest.swift
+//  MisskeyAPIKit
+//
+//  Created by petitstrawberry on 2023/10/18.
+//
+
 import Foundation
 
 struct StreamingRequest: Codable {
