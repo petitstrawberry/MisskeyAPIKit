@@ -18,15 +18,15 @@ public struct StreamingResponse {
             case follow
             case followed
             case unfollow
-            case messagingMessage
+            // case messagingMessage
             case readAllNotifications
             case unreadNotification
             case unreadMention
             case readAllUnreadMentions
             case unreadSpecifiedNote
             case readAllUnreadSpecifiedNotes
-            case unreadMessagingMessage
-            case readAllMessagingMessages
+            // case unreadMessagingMessage
+            // case readAllMessagingMessages
         }
 
         let id: String?
