@@ -12,8 +12,6 @@ public class StreamingClient: WebSocketDelegate {
     private var socket: WebSocket
     private var isConnected: Bool = false
 
-    private var responseEvents: [WebSocketEvent] = []
-
     // State
     public enum State {
         case connected
@@ -101,13 +99,19 @@ public class StreamingClient: WebSocketDelegate {
             guard let id = body["id"] as? String else { return }
             guard let eventTypeRaw = body["type"] as? String else { return }
             guard let eventType = StreamingResponse.Body.EventType(rawValue: eventTypeRaw) else { return }
-            guard let channelBody = body["body"] as? [String: Any?] else { return }
+            guard let eventBody = body["body"] as? [String: Any?] else { return }
 
             subscibers.forEach { subscriber in
-                if subscriber.id.uuidString == id {
-                    subscriber.channel.didReceive(body: StreamingResponse.Body(
-                        id: id, type: eventType, body: channelBody
-                    ))
+                if subscriber.id == id {
+                    if let channel = subscriber.channel {
+                        channel.didReceive(body: StreamingResponse.Body(
+                            id: id, type: eventType, body: eventBody
+                        ))
+                    } else if let capture = subscriber.capture {
+                        capture.didReceive(body: StreamingResponse.Body(
+                            id: id, type: eventType, body: eventBody
+                        ))
+                    }
                 }
             }
 
@@ -118,19 +122,20 @@ public class StreamingClient: WebSocketDelegate {
 
     // Subscriber
     struct Subscriber {
-        let id: UUID
-        let channel: BaseChannel
+        let id: String
+        let channel: BaseChannel?
+        let capture: StreamingCapture?
     }
 
     private var subscibers: [Subscriber] = []
 
-    func subscribe(id: UUID, channel: BaseChannel) {
+    func subscribe(id: String, channel: BaseChannel? = nil, capture: StreamingCapture? = nil) {
         print("subscribe: \(id)")
 
-        subscibers.append(Subscriber(id: id, channel: channel))
+        subscibers.append(Subscriber(id: id, channel: channel, capture: capture))
     }
 
-    func unsubscribe(id: UUID) {
+    func unsubscribe(id: String) {
         subscibers.removeAll(where: { $0.id == id })
     }
 }

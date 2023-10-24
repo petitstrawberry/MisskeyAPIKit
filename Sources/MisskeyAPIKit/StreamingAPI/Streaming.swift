@@ -12,6 +12,7 @@ public struct Streaming {
     var localTimelineChannel: LocalTimelineChannel { LocalTimelineChannel(client: client) }
     var homeTimelineChannel: HomeTimelineChannel { HomeTimelineChannel(client: client) }
     var hybridTimelineChannel: HybridTimelineChannel { HybridTimelineChannel(client: client) }
+    var capture: StreamingCapture { StreamingCapture(client: client) }
 
     public func connect() {
         client.connect()
@@ -22,4 +23,5 @@ public struct Streaming {
     public func disconnect() {
         client.disconnect()
     }
+
 }

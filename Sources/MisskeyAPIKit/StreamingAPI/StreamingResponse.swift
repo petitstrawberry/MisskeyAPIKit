@@ -34,6 +34,12 @@ public struct StreamingResponse {
             case readAllUnreadSpecifiedNotes
             // case unreadMessagingMessage
             // case readAllMessagingMessages
+
+            // Note Capture Event
+            case reacted
+            case unreacted
+            case pollVoted
+            case deleted
         }
 
         let id: String?

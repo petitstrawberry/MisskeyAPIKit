@@ -42,9 +42,23 @@ public class Note: Codable {
             public let isVoted: Bool
         }
 
+        public struct Voted: Codable {
+            public let choice: Int
+            public let userId: String
+        }
+
         public let choices: [Choice]
         public let multiple: Bool
         public let expiresAt: String?
         public let expiredAfter: String?
+    }
+
+    public struct Reacted: Codable {
+        public let reaction: String
+        public let userId: String
+    }
+
+    public struct Deleted: Codable {
+        public let deletedAt: String
     }
 }

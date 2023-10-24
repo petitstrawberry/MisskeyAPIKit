@@ -32,7 +32,7 @@ private struct ConnectionRequest: Codable {
 public class BaseChannel {
     public let client: StreamingClient
     public var channel: String { fatalError("channel has not been implemented")}
-    public let id: UUID = UUID()
+    public let id: String = UUID().uuidString
 
     required init(client: StreamingClient) {
         self.client = client
@@ -45,7 +45,7 @@ public class BaseChannel {
     public func connect() -> Self {
         // default implementation
         let connectionRequest = ConnectionRequest(
-            type: .connect, body: .init(channel: channel, id: id.uuidString)
+            type: .connect, body: .init(channel: channel, id: id)
         )
 
         do {
@@ -64,7 +64,7 @@ public class BaseChannel {
     public func disconnect() {
         // default implementation
         let connectionRequest = ConnectionRequest(
-            type: .disconnect, body: .init(id: id.uuidString)
+            type: .disconnect, body: .init(id: id)
         )
 
         do {
