@@ -29,19 +29,6 @@ private struct ConnectionRequest: Codable {
     let body: Body?
 }
 
-// protocol BaseChannel {
-//     var client: StreamingClient { get }
-//     var id: UUID { get }
-//     var channel: String { get }
-
-//     init(client: StreamingClient)
-
-//     func connect()
-//     func connect<T: BaseChannel>() -> T
-//     func disconnect()
-//     func didReceive(body: StreamingResponse.Body)
-// }
-
 public class BaseChannel {
     public let client: StreamingClient
     public var channel: String { fatalError("channel has not been implemented")}

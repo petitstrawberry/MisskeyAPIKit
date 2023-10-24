@@ -15,23 +15,6 @@ public class MisskeyAPI {
         let session: Session
     }
 
-    public struct Streaming {
-        let client: StreamingClient
-        var mainChannel: MainChannel { MainChannel(client: client) }
-        var globalTimelineChannel: GlobalTimelineChannel { GlobalTimelineChannel(client: client) }
-
-        public func connect() {
-            client.connect()
-        }
-        public func connect() async {
-            await client.connect()
-        }
-        public func disconnect() {
-            client.disconnect()
-        }
-
-    }
-
     public let notes: NotesClient
     public let drive: DriveClient
     public let streaming: Streaming
