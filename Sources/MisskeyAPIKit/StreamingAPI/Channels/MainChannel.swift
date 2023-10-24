@@ -8,8 +8,8 @@
 import Foundation
 import Starscream
 
-class MainChannel: BaseChannel {
-    override var channel: String { "main" }
+public class MainChannel: BaseChannel {
+    override public var channel: String { "main" }
 
     override func didReceive(body: StreamingResponse.Body) {
         switch body.type {
