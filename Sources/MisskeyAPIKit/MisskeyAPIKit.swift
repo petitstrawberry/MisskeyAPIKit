@@ -8,7 +8,6 @@
 import Alamofire
 
 public class MisskeyAPI {
-    public static let version = "0.1.0"
 
     struct Client {
         let baseURL: String
@@ -18,6 +17,7 @@ public class MisskeyAPI {
 
     public let notes: NotesClient
     public let drive: DriveClient
+    public let streaming: Streaming
 
     // MARK: - Initializer
 
@@ -25,5 +25,6 @@ public class MisskeyAPI {
         let client = Client(baseURL: baseURL, credentials: credentials, session: session)
         notes = NotesClient(client: client)
         drive = DriveClient(client: client)
+        streaming = Streaming(client: StreamingClient(client: client))
     }
 }

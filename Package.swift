@@ -21,6 +21,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.8.0")),
         .package(url: "https://github.com/WeTransfer/Mocker.git", .upToNextMajor(from: "3.0.1")),
+        .package(url: "https://github.com/daltoniam/Starscream.git", .upToNextMajor(from: "4.0.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -29,6 +30,7 @@ let package = Package(
             name: "MisskeyAPIKit",
             dependencies: [
                 .product(name: "Alamofire", package: "Alamofire"),
+                .product(name: "Starscream", package: "Starscream"),
             ]
         ),
         .testTarget(
