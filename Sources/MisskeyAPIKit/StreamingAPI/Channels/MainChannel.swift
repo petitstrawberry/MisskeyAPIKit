@@ -82,42 +82,49 @@ public class MainChannel: BaseChannel {
     }
 
     var onReceiveNotification: ((Notification) -> Void)?
+    @discardableResult
     public func onReceiveNotification(_ completion: @escaping (Notification) -> Void) -> Self {
         onReceiveNotification = completion
         return self
     }
 
     var onReceiveMention: ((Note) -> Void)?
+    @discardableResult
     public func onReceiveMention(_ completion: @escaping (Note) -> Void) -> Self {
         onReceiveMention = completion
         return self
     }
 
     var onReceiveReply: ((Note) -> Void)?
+    @discardableResult
     public func onReceiveReply(_ completion: @escaping (Note) -> Void) -> Self {
         onReceiveReply = completion
         return self
     }
 
     var onReceiveRenote: ((Note) -> Void)?
+    @discardableResult
     public func onReceiveRenote(_ completion: @escaping (Note) -> Void) -> Self {
         onReceiveRenote = completion
         return self
     }
 
     var onReceiveFollow: ((User) -> Void)?
+    @discardableResult
     public func onReceiveFollow(_ completion: @escaping (User) -> Void) -> Self {
         onReceiveFollow = completion
         return self
     }
 
     var onReceiveFollowed: ((User) -> Void)?
+    @discardableResult
     public func onReceiveFollowed(_ completion: @escaping (User) -> Void) -> Self {
         onReceiveFollowed = completion
         return self
     }
 
     var onReceiveUnfollow: ((User) -> Void)?
+    @discardableResult
     public func onReceiveUnfollow(_ completion: @escaping (User) -> Void) -> Self {
         onReceiveUnfollow = completion
         return self

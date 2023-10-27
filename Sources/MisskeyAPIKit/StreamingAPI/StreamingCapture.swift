@@ -35,7 +35,7 @@ public class StreamingCapture {
         self.client = client
     }
 
-
+    @discardableResult
     public func subscribe(id: String) -> Self {
         // default implementation
         let connectionRequest = ConnectionRequest(
@@ -54,6 +54,10 @@ public class StreamingCapture {
         }
 
         return self
+    }
+    @discardableResult
+    public func subscribe(note: Note) -> Self {
+        return subscribe(id: note.id)
     }
 
     public func unsubscribe() {
@@ -116,24 +120,28 @@ public class StreamingCapture {
     }
 
     var onReacted: ((MisskeyAPIKit.Note.Reacted) -> Void)?
+    @discardableResult
     public func onReacted(_ completion: @escaping (MisskeyAPIKit.Note.Reacted) -> Void) -> Self {
         onReacted = completion
         return self
     }
 
     var onUnreacted: ((MisskeyAPIKit.Note.Reacted) -> Void)?
+    @discardableResult
     public func onUnreacted(_ completion: @escaping (MisskeyAPIKit.Note.Reacted) -> Void) -> Self {
         onUnreacted = completion
         return self
     }
 
     var onPollVoted: ((MisskeyAPIKit.Note.Poll.Voted) -> Void)?
+    @discardableResult
     public func onPollVoted(_ completion: @escaping (MisskeyAPIKit.Note.Poll.Voted) -> Void) -> Self {
         onPollVoted = completion
         return self
     }
 
     var onDeleted: ((MisskeyAPIKit.Note.Deleted) -> Void)?
+    @discardableResult
     public func onDeleted(_ completion: @escaping (MisskeyAPIKit.Note.Deleted) -> Void) -> Self {
         onDeleted = completion
         return self
