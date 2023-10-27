@@ -14,6 +14,11 @@ public struct Streaming {
     public var hybridTimelineChannel: HybridTimelineChannel { HybridTimelineChannel(client: client) }
     public var capture: StreamingCapture { StreamingCapture(client: client) }
 
+    // isConnected
+    public var isConnected: Bool {
+        client.getState() == .connected
+    }
+
     // connect
 
     public func connect() {
