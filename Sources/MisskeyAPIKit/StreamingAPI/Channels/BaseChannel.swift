@@ -42,6 +42,7 @@ public class BaseChannel {
         fatalError("didReceive(body:) has not been implemented")
     }
 
+    @discardableResult
     public func connect() -> Self {
         // default implementation
         let connectionRequest = ConnectionRequest(

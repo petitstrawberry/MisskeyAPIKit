@@ -28,6 +28,7 @@ public class GlobalTimelineChannel: BaseChannel {
     }
 
     var onReceiveNote: ((MisskeyAPIKit.Note) -> Void)?
+    @discardableResult
     public func onReceiveNote(_ completion: @escaping (MisskeyAPIKit.Note) -> Void) -> Self {
         onReceiveNote = completion
         return self

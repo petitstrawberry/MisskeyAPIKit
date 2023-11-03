@@ -12,6 +12,12 @@ public class StreamingClient: WebSocketDelegate {
     private var socket: WebSocket
     private var isConnected: Bool = false
 
+    private var onConnected: (([String: String]) -> Void)?
+    private var onDisconnected: ((String, UInt16) -> Void)?
+    private var onCanceled: (() -> Void)?
+    private var onError: ((Error?) -> Void)?
+    private var onPeerClosed: (() -> Void)?
+
     // State
     public enum State {
         case connected
@@ -37,18 +43,55 @@ public class StreamingClient: WebSocketDelegate {
     public func connect() {
         isConnected = false
         socket.connect()
-
     }
-
-    public func connect() async {
+    @discardableResult
+    func connect() async -> [String: String] {
         isConnected = false
+        var received: [String: String] = [:]
+        self.onConnected { headers in
+            received = headers
+        }
         socket.connect()
         while !isConnected {}
 
+        return received
+    }
+    func onConnected(_ callback: @escaping ([String: String]) -> Void) {
+        onConnected = callback
+    }
+    @discardableResult
+    func reconnect(resetSubscribers: Bool = false) async -> [String: String] {
+        if isConnected {
+            disconnect()
+            while isConnected {}
+        }
+        let headers = await connect()
+        if !resetSubscribers {
+            subscibers.forEach { subscriber in
+                if let channel = subscriber.channel {
+                    channel.connect()
+                } else if let capture = subscriber.capture {
+                    capture.subscribe(id: subscriber.id)
+                }
+            }
+        }
+        return headers
+    }
+    func disconnect() {
+        socket.disconnect()
+    }
+    func onDisconnected(_ callback: @escaping (String, UInt16) -> Void) {
+        onDisconnected = callback
     }
 
-    public func disconnect() {
-        socket.disconnect()
+    func onCanceled(_ callback: @escaping () -> Void) {
+        onCanceled = callback
+    }
+    func onError(_ callback: @escaping (Error?) -> Void) {
+        onError = callback
+    }
+    func onPeerClosed(_ callback: @escaping () -> Void) {
+        onPeerClosed = callback
     }
 
     func write(string: String) {
@@ -61,9 +104,11 @@ public class StreamingClient: WebSocketDelegate {
         case .connected(let headers):
             isConnected = true
             print("websocket is connected: \(headers)")
+            onConnected?(headers)
         case .disconnected(let reason, let code):
             isConnected = false
             print("websocket is disconnected: \(reason) with code: \(code)")
+            onDisconnected?(reason, code)
         case .text(let string):
             print("Received text: \(string)")
             transferResponseToSubscriber(string)
@@ -79,10 +124,13 @@ public class StreamingClient: WebSocketDelegate {
             break
         case .cancelled:
             isConnected = false
+            onCanceled?()
         case .error(let error):
             isConnected = false
             // handleError(error)
+            onError?(error)
         case .peerClosed:
+            onPeerClosed?()
             break
         }
     }
@@ -131,7 +179,7 @@ public class StreamingClient: WebSocketDelegate {
 
     func subscribe(id: String, channel: BaseChannel? = nil, capture: StreamingCapture? = nil) {
         print("subscribe: \(id)")
-
+        if subscibers.contains(where: { $0.id == id }) { return }
         subscibers.append(Subscriber(id: id, channel: channel, capture: capture))
     }
 
