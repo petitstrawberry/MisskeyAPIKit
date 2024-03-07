@@ -21,7 +21,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.9.0")),
         .package(url: "https://github.com/WeTransfer/Mocker.git", .upToNextMajor(from: "3.0.2")),
-        .package(url: "https://github.com/daltoniam/Starscream.git", .upToNextMajor(from: "4.0.6"))
+        .package(url: "https://github.com/daltoniam/Starscream.git", .upToNextMajor(from: "4.0.8"))
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
